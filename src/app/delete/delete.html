@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="delete-card animate-bounce-in">
+    <div class="warning-icon-wrapper">
+      <div class="pulse-ring"></div>
+      <i class="fa-solid fa-exclamation-triangle"></i>
+    </div>
+    
+    <h2>Confirm Delete</h2>
+    <p class="subtitle">Are you sure you want to remove this student from the system? This action cannot be undone.</p>
+    
+    <div class="student-info-box" *ngIf="student">
+      <div class="profile-preview">
+        <img [src]="student.image || 'https://placehold.co/150'" alt="Student profile">
+      </div>
+      <div class="details">
+        <span class="id-tag">ID: {{ student.id }}</span>
+        <h3>{{ student.name }}</h3>
+        <p><i class="fa-solid fa-venus-mars"></i> {{ student.gender }}</p>
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button type="button" class="confirm-btn" (click)="confirmDelete()">
+        <i class="fa-solid fa-trash-can"></i> Yes, Delete
+      </button>
+      <button type="button" class="back-btn" routerLink="/">
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>

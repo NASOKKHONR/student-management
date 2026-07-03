@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="edit-card animate-fade-in">
+    <div class="top-bar">
+      <h1>
+        <i class="fa-solid fa-pen-to-square"></i> 
+        Edit Student Information
+      </h1>
+      <button class="back-btn" routerLink="/" title="Go Back">
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+    </div>
+
+    <form class="form-body" *ngIf="student" (ngSubmit)="updateStudent()">
+      <div class="input-group">
+        <label><i class="fa-solid fa-id-badge"></i> Student ID</label>
+        <input type="number" [(ngModel)]="student.id" name="id" disabled>
+      </div>
+
+      <div class="input-group">
+        <label><i class="fa-solid fa-user"></i> Full Name</label>
+        <input type="text" placeholder="Enter name" [(ngModel)]="student.name" name="name" required>
+      </div>
+
+      <div class="input-group">
+        <label><i class="fa-solid fa-venus-mars"></i> Gender</label>
+        <select [(ngModel)]="student.gender" name="gender">
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label><i class="fa-solid fa-location-dot"></i> Address / Province</label>
+        <input type="text" placeholder="Enter address" [(ngModel)]="student.address" name="address" required>
+      </div>
+
+      <div class="image-preview-section">
+        <div class="avatar-wrapper">
+          <img [src]="student.image || 'https://placehold.co/150'" alt="Preview">
+        </div>
+        <div class="upload-box">
+          <label for="fileUploadEdit" class="upload-btn">
+            <i class="fa-solid fa-camera"></i> Change Avatar
+          </label>
+          <input type="file" id="fileUploadEdit" accept="image/*" hidden (change)="onImageSelected($event)">
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button type="submit" class="save-btn">
+          <i class="fa-solid fa-floppy-disk"></i> Update Changes
+        </button>
+        <button type="button" class="cancel-btn" routerLink="/">
+          <i class="fa-solid fa-xmark"></i> Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

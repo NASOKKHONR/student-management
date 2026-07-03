@@ -1,0 +1,251 @@
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:Arial;
+  background:rgb(19, 19, 55);
+}
+
+.container{
+  min-height:100vh;
+  padding:30px;
+  background:rgb(19, 19, 55);
+  color:white;
+  transition:0.3s;
+}
+
+.light-mode{
+  background:rgb(234, 230, 230);
+  color:black;
+}
+
+.top-bar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:30px;
+}
+
+.top-bar h1{
+  font-size:32px;
+}
+
+.theme-btn{
+  width:50px;
+  height:50px;
+  border:none;
+  border-radius:50%;
+  cursor:pointer;
+  background:rgb(37, 99, 235);
+  color:white;
+  font-size:20px;
+}
+
+.dashboard{
+  display:grid;
+  grid-template-columns:
+  repeat(auto-fit,minmax(220px,1fr));
+
+  gap:20px;
+  margin-bottom:30px;
+}
+
+.card{
+  padding:30px;
+  border-radius:20px;
+
+  background:
+  linear-gradient(
+    135deg,
+    rgb(59, 130, 246),
+    rgb(147, 51, 234)
+  );
+
+  text-align:center;
+
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+}
+
+.card h2{
+  font-size:40px;
+  margin-bottom:10px;
+}
+
+.form-container{
+  display:grid;
+  grid-template-columns:
+  repeat(auto-fit,minmax(220px,1fr));
+
+  gap:15px;
+  margin-bottom:25px;
+}
+
+input,
+select{
+  padding:14px;
+  border:none;
+  border-radius:10px;
+}
+
+button{
+  padding:14px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  background:rgb(37, 99, 235);
+  color:white;
+  transition:0.3s;
+}
+
+button:hover{
+  transform:translateY(-2px);
+}
+
+.clear-btn{
+  background:rgb(239, 68, 68);
+}
+
+.filter-section{
+  display:flex;
+  gap:15px;
+  margin-bottom:25px;
+  flex-wrap:wrap;
+}
+
+.table-container{
+  overflow:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+thead{
+  background:rgb(37, 99, 235);
+}
+
+th,td{
+  padding:15px;
+  text-align:center;
+}
+
+tbody tr{
+  transition:0.3s;
+}
+
+tbody tr:hover{
+  background:
+  rgba(255,255,255,0.1);
+}
+
+img{
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+.edit-btn{
+  background:rgb(245, 158, 11);
+  margin-right:10px;
+}
+
+.delete-btn{
+  background:rgb(239, 68, 68);
+}
+
+.upload-btn{
+  background:rgb(6, 182, 212);
+  color:white;
+  padding:14px;
+  border-radius:10px;
+  cursor:pointer;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+}
+
+@media(max-width:768px){
+
+  .top-bar{
+    flex-direction:column;
+    gap:20px;
+  }
+
+}
+
+
+/* this is marquee style */
+.mar{
+    position: fixed;
+    /* top: ; */
+    bottom:0 ;
+    left:0 ;
+}
+
+.text{
+  font-family: AKbalthom Kbach;
+  color: rgb(222, 241, 8);
+  font-size: 30px;
+}
+
+/* កំណត់ទម្រង់ប្រអប់បញ្ជីទម្លាក់ចុះ */
+.dropdown-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 200px; /* កម្ពស់ខ្លីល្មម បើលើសពីនេះវានឹង Scroll (អាចដូរតាមចិត្តបាន) */
+  overflow-y: auto;  /* បង្កើត Scrollbar ស្វ័យប្រវត្តិ */
+  background-color: #1e1e2f; /* ពណ៌ផ្ទៃក្រោយឲ្យស៊ីជាមួយ Dark Mode របស់អ្នក */
+  border: 1px solid #3f3f5f;
+  border-radius: 5px;
+  padding: 0;
+  margin: 5px 0 0 0;
+  list-style: none;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* ស្ទីលសម្រាប់ធាតុខេត្តនីមួយៗ */
+.dropdown-list li {
+  padding: 10px 15px;
+  color: #ffffff;
+  cursor: pointer;
+  text-align: left;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+/* ពេលយក Mouse ទៅដាក់ពីលើ (Hover) */
+.dropdown-list li:hover {
+  background-color: #3b3b54;
+}
+
+/* ករណីរកឈ្មោះខេត្តមិនឃើញ */
+.dropdown-list .no-result {
+  color: #888;
+  font-style: italic;
+  pointer-events: none;
+}
+
+/* កែសម្រួលរាង Scrollbar ឲ្យមើលទៅរលោងស្អាត */
+.dropdown-list::-webkit-scrollbar {
+  width: 6px;
+}
+.dropdown-list::-webkit-scrollbar-thumb {
+  background-color: #555577;
+  border-radius: 4px;
+}

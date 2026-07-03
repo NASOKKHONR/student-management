@@ -1,0 +1,115 @@
+<div class="container" [class.light-mode]="!darkMode">
+
+    
+
+  <div class="top-bar">
+    <h1>
+      <i class="fa-solid fa-graduation-cap"></i>
+      Student Management
+    </h1>
+    <button type="button" class="theme-btn" (click)="toggleTheme()">
+      <i class="fa-solid" [class.fa-moon]="darkMode" [class.fa-sun]="!darkMode"></i>
+    </button>
+  </div>
+
+  <div class="dashboard">
+    <div class="card">
+      <h2>{{ students.length }}</h2>
+      <p>Total Students</p>
+    </div>
+    <div class="card">
+      <h2>{{ getGenderCount('Male') }}</h2>
+      <p>Male Students</p>
+    </div>
+    <div class="card">
+      <h2>{{ getGenderCount('Female') }}</h2>
+      <p>Female Students</p>
+    </div>
+  </div>
+
+  <div class="form-container">
+    <input type="number" placeholder="Student ID" [(ngModel)]="student.id">
+    <input type="text" placeholder="Student Name" [(ngModel)]="student.name">
+
+    <select [(ngModel)]="student.gender">
+      <option value="">Select Gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+    </select>
+
+    <div class="custom-dropdown" style="position: relative; display: inline-block;">
+      <input type="text" placeholder="Select Address" [(ngModel)]="student.address" 
+             (focus)="showDropdown = true" (blur)="hideDropdownWithDelay()">
+          
+      <ul class="dropdown-list" *ngIf="showDropdown">
+        <li *ngFor="let province of getFilteredProvinces()" (mousedown)="selectProvince(province)">
+          {{ province }}
+        </li>
+        <li *ngIf="getFilteredProvinces().length === 0" class="no-result">No province found</li>
+      </ul>
+    </div>
+
+    <div class="upload-box">
+      <label for="fileUpload" class="upload-btn">
+        <i class="fa-solid fa-image"></i> Choose Image
+      </label>
+      <input type="file" id="fileUpload" accept="image/*" hidden (change)="onImageSelected($event)">
+    </div>
+
+    <button type="button" (click)="addStudent()">
+      <i class="fa-solid fa-plus"></i> Add Student
+    </button>
+
+    <button type="button" class="clear-btn" (click)="clearAll()">
+      <i class="fa-solid fa-trash"></i> Clear All
+    </button>
+  </div>
+
+  <div class="filter-section">
+    <input type="text" placeholder="Search Student..." [(ngModel)]="searchText" (input)="filterStudents()">
+
+    <select [(ngModel)]="selectedGender" (change)="filterStudents()">
+      <option value="All">All</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+    </select>
+
+    <button type="button" (click)="sortStudents()">
+      <i class="fa-solid fa-sort"></i> Sort A-Z
+    </button>
+  </div>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Gender</th>
+          <th>Address</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let s of filteredStudents; trackBy: trackByStudent">
+          <td>
+            <img [src]="s.image" alt="Student Image" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px;">
+          </td>
+          <td>{{ s.id }}</td>
+          <td>{{ s.name }}</td>
+          <td>{{ s.gender }}</td>
+          <td>{{ s.address }}</td>
+          <td>
+            <button type="button" class="edit-btn" [routerLink]="['/edit', s.id]">
+              <i class="fa-solid fa-pen"></i>
+            </button>
+            <button type="button" class="delete-btn" [routerLink]="['/delete', s.id]">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
